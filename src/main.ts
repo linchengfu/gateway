@@ -10,6 +10,7 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
 
 import { AllExceptionsFilter } from './common/exceptions/base.exception.filter';
 import { HttpExceptionFilter } from './common/exceptions/http.exception.filter';
+import fastifyCookie from '@fastify/cookie';
 import { generateDocument } from './doc';
 
 declare const module: any;
@@ -23,6 +24,10 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+
+  app.register(fastifyCookie, {
+    secret: 'my-secret', // for cookies signature
+  });
 
   // 启动全局字段校验，保证请求接口字段校验正确。
   app.useGlobalPipes(new ValidationPipe());

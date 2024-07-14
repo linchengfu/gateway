@@ -1,4 +1,3 @@
-
 import { APP_ID, APP_SECRET } from './const';
 
 import { methodV } from 'src/utils/request';
@@ -54,7 +53,6 @@ export const getUserAccessToken = async (code) => {
   });
   return data as GetAppTokenRes;
 };
-
 
 export const getAppToken = async () => {
   const { data } = await methodV({
